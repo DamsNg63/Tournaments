@@ -1,0 +1,260 @@
+﻿<Application x:Class="Tournaments.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Tournaments"
+             StartupUri="Home.xaml">
+    <Application.Resources>
+
+        <!-- Default Window properties -->
+        <Style x:Key="Window" TargetType="Window">
+            <Setter Property="Icon"                                 Value="pack://application:,,,/Tournaments;Component/icon.ico" />
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome
+                        CaptionHeight="0"
+                        CornerRadius ="20"
+                        ResizeBorderThickness="7"
+                        UseAeroCaptionButtons="False"
+                        GlassFrameThickness="0">
+                    </WindowChrome>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Default ListView DataTemplate (used to list participants) -->
+        <Style TargetType="ListView">
+            <Setter Property="Background"                           Value="Transparent" />
+            <Setter Property="BorderThickness"                      Value="0" />
+            <Setter Property="IsSynchronizedWithCurrentItem"        Value="True" />
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock FontWeight="Bold" Text="{Binding FullName}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Default ScrollViewer -->
+        <Style TargetType="ScrollViewer">
+            <Setter Property="VerticalScrollBarVisibility"          Value="Auto" />
+        </Style>
+        
+        <!-- State bar -->
+        <Style x:Key="StateBarUserControl" TargetType="Grid">
+            <EventSetter Event="MouseLeftButtonDown"                Handler="DragAndDrop" />
+            <Setter Property="Background"                           Value="#222" />
+        </Style>
+        
+        <!-- Title -->
+        <Style x:Key="Title" TargetType="StackPanel">
+            <Setter Property="Grid.Column"                          Value="0" />
+            <Setter Property="Margin"                               Value="5 0 0 0" />
+            <Setter Property="Orientation"                          Value="Horizontal" />
+        </Style>
+        
+        <!-- Title logo -->
+        <Style x:Key="TitleLogo" TargetType="Image">
+            <Setter Property="Margin"                               Value="5 0 5 0" />
+            <Setter Property="MaxHeight"                            Value="16" />
+            <Setter Property="MaxWidth"                             Value="16" />
+            <Setter Property="MinHeight"                            Value="16" />
+            <Setter Property="MinWidth"                             Value="16" />
+            <Setter Property="VerticalAlignment"                    Value="Center" />
+        </Style>
+
+        <!-- Title text -->
+        <Style x:Key="TitleText" TargetType="TextBlock">
+            <Setter Property="FontSize"                             Value="16" />
+            <Setter Property="FontWeight"                           Value="Bold" />
+            <Setter Property="Foreground"                           Value="White" />
+            <Setter Property="VerticalAlignment"                    Value="Center" />
+        </Style>
+
+        <!-- State Buttons StackPanel -->
+        <Style x:Key="StateButtons" TargetType="StackPanel">
+            <Setter Property="FlowDirection"                        Value="RightToLeft" />
+            <Setter Property="Grid.Column"                          Value="2" />
+            <Setter Property="Orientation"                          Value="Horizontal" />
+        </Style>
+
+        <!-- Default Button style-->
+        <Style x:Key="DefaultButton" TargetType="Button">
+            <Setter Property="FontSize"                             Value="16" />
+            <Setter Property="FontWeight"                           Value="Bold" />
+            <Setter Property="Margin"                               Value="5" />
+            <Setter Property="Padding"                              Value="20 5" />
+        </Style>
+
+        <!-- State Button -->
+        <Style x:Key="StateButton" TargetType="Button">
+            <Setter Property="Background"                           Value="#111" />
+            <Setter Property="Foreground"                           Value="#FFF" />
+            <Setter Property="BorderThickness"                      Value="0" />
+            <Setter Property="VerticalContentAlignment"             Value="Center" />
+            <Setter Property="HorizontalContentAlignment"           Value="Center" />
+            <Setter Property="FontWeight"                           Value="Bold" />
+            <Setter Property="MaxHeight"                            Value="32" />
+            <Setter Property="MaxWidth"                             Value="32" />
+            <Setter Property="MinHeight"                            Value="32" />
+            <Setter Property="MinWidth"                             Value="32" />
+        </Style>
+
+        <!-- Exit Button -->
+        <Style x:Key="CloseButton" TargetType="Button" BasedOn="{StaticResource StateButton}">
+            <EventSetter Event="Click"                              Handler="Close_Click" />
+            <Setter Property="Content"                              Value="X" />
+            <Setter Property="HorizontalContentAlignment"           Value="Center" />
+            <Setter Property="VerticalContentAlignment"             Value="Center" />
+        </Style>
+        
+        <!-- Cancel Button -->
+        <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
+            <Setter Property="Content"                              Value="Annuler" />
+            <Setter Property="IsCancel"                             Value="True" />
+            <EventSetter Event="Click"                              Handler="Close_Click" />
+        </Style>
+        
+         <!-- Validate Button -->
+        <Style x:Key="ValidateButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
+            <Setter Property="Content"                              Value="Valider" />
+            <Setter Property="IsDefault"                            Value="True" />
+        </Style>
+
+        <!-- Item Image -->
+        <Style x:Key="ItemImage" TargetType="Image">
+            <EventSetter Event="MouseRightButtonDown"       Handler="RemoveImage_RightClick" />
+            <Setter Property="HorizontalAlignment"                  Value="Left" />
+            <Setter Property="Margin"                               Value="10 0 0 0" />
+            <Setter Property="MaxWidth"                             Value="200" />
+        </Style>
+
+        <!-- Window maximization state Button -->
+        <Style x:Key="MaximizationButton" TargetType="Button" BasedOn="{StaticResource StateButton}">
+            <EventSetter Event="Click"                              Handler="MaximizationState_Click" />
+            <Setter Property="Content"                              Value="⤢" />
+            <Setter Property="HorizontalContentAlignment"           Value="Center" />
+            <Setter Property="VerticalContentAlignment"             Value="Center" />
+        </Style>
+
+        <!-- Window minimization state Button -->
+        <Style x:Key="MinimizationButton" TargetType="Button" BasedOn="{StaticResource StateButton}">
+            <EventSetter Event="Click"                              Handler="MinimizationState_Click" />
+            <Setter Property="Content"                              Value="—" />
+            <Setter Property="HorizontalContentAlignment"           Value="Center" />
+            <Setter Property="VerticalContentAlignment"             Value="Center" />
+        </Style>
+
+        <!-- Active Button -->
+        <Style x:Key="ActiveButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
+            <Setter Property="Background"                           Value="#FF12CB12" />
+            <Setter Property="Foreground"                           Value="#FFFFFBFB" />
+        </Style>
+
+        <!-- Creation Button -->
+        <Style x:Key="CreationButton" TargetType="Button" BasedOn="{StaticResource DefaultButton}">
+            <Setter Property="HorizontalAlignment"                  Value="Left" />
+            <Setter Property="Margin"                               Value="10" />
+            <Setter Property="Width"                                Value="250" />
+        </Style>
+        
+        <!-- Participant addition Button -->
+        <Style x:Key="ParticipantCreationButton" TargetType="Button" BasedOn="{StaticResource CreationButton}">
+            <EventSetter Event="Click"                              Handler="DisplayParticipantCreation_Click" />
+        </Style>
+
+        <!-- Tree StackPanel -->
+        <Style x:Key="TreeStackPanel" TargetType="StackPanel">
+            <Setter Property="MaxHeight"                            Value="120" />
+            <Setter Property="MinHeight"                            Value="120" />
+            <Setter Property="Height"                               Value="120" />
+            <Setter Property="Margin"                               Value="50 10 " />
+            <Setter Property="HorizontalAlignment"                  Value="Stretch" />
+            <Setter Property="VerticalAlignment"                    Value="Center" />
+        </Style>
+        
+        <!-- Tree row StackPanel -->
+        <Style x:Key="TreeRowStackPanel" TargetType="StackPanel">
+            <Setter Property="MaxHeight"                            Value="60" />
+            <Setter Property="MinHeight"                            Value="60" />
+            <Setter Property="Height"                               Value="60" />
+            <Setter Property="HorizontalAlignment"                  Value="Stretch" />
+            <Setter Property="Orientation"                          Value="Horizontal" />
+        </Style>
+
+        <!-- Tree name TextBlock -->
+        <Style x:Key="TreeNameTextBlock" TargetType="TextBlock">
+            <Setter Property="MaxHeight"                            Value="50" />
+            <Setter Property="MinHeight"                            Value="50" />
+            <Setter Property="Height"                               Value="50" />
+            <Setter Property="MaxWidth"                             Value="280" />
+            <Setter Property="MinWidth"                             Value="280" />
+            <Setter Property="Width"                                Value="280" />
+            <Setter Property="FontSize"                             Value="18" />
+            <Setter Property="FontWeight"                           Value="Bold" />
+            <Setter Property="Padding"                              Value="12" />
+        </Style>
+
+        <!-- Tree score TextBox -->
+        <Style x:Key="TreeScoreTextBox" TargetType="TextBox">
+            <Setter Property="MaxHeight"                            Value="50" />
+            <Setter Property="MinHeight"                            Value="50" />
+            <Setter Property="Height"                               Value="50" />
+            <Setter Property="MaxWidth"                             Value="50" />
+            <Setter Property="MinWidth"                             Value="50" />
+            <Setter Property="Width"                                Value="50" />
+            <Setter Property="FontSize"                             Value="20" />
+            <Setter Property="FontWeight"                           Value="Bold" />
+            <Setter Property="Padding"                              Value="10" />
+            <Setter Property="TextAlignment"                        Value="Center" />
+        </Style>
+
+        <!-- Creation Image Button -->
+        <Style x:Key="ImageCreationButton" TargetType="Button" BasedOn="{StaticResource CreationButton}">
+            <EventSetter Event="Click"                              Handler="BrowseImages_Click" />
+            <Setter Property="Content"                              Value="Image" />
+            <Setter Property="FontSize"                             Value="18" />
+        </Style>
+
+        <!-- Creation Label -->
+        <Style x:Key="CreationLabel" TargetType="Label">
+            <Setter Property="FontSize"                             Value="18" />
+            <Setter Property="VerticalAlignment"                    Value="Center" />
+            <Setter Property="HorizontalAlignment"                  Value="Right" />
+        </Style>
+
+        <!-- Creation TextBox -->
+        <Style x:Key="CreationTextBox" TargetType="TextBox">
+            <Setter Property="Margin"                               Value="10" />
+            <Setter Property="FontSize"                             Value="18" />
+            <Setter Property="VerticalContentAlignment"             Value="Center" />
+        </Style>
+
+        <!-- Creation DatePicker -->
+        <Style x:Key="CreationDatePicker" TargetType="DatePicker">
+            <Setter Property="Margin"                               Value="10" />
+            <Setter Property="FontSize"                             Value="18" />
+            <Setter Property="VerticalContentAlignment"             Value="Center" />
+        </Style>
+
+        <!-- Creation ComboBox -->
+        <Style x:Key="CreationComboBox" TargetType="ComboBox">
+            <Setter Property="IsEditable"                           Value="True" />
+            <Setter Property="Margin"                               Value="10" />
+            <Setter Property="FontSize"                             Value="18" />
+            <Setter Property="HorizontalAlignment"                  Value="Left" />
+            <Setter Property="VerticalContentAlignment"             Value="Center" />
+            <Setter Property="Text"                                 Value="Choisir un sport..." />
+            <Setter Property="Width"                                Value="200" />
+        </Style>
+
+        <!-- Forthcoming match and Ranking TextBlock -->
+        <Style x:Key="CommentTextBlock" TargetType="TextBlock">
+            <Setter Property="Padding"                              Value="10" />
+            <Setter Property="FontSize"                             Value="16" />
+            <Setter Property="TextAlignment"                        Value="Center" />
+            <Setter Property="Foreground"                           Value="White" />
+        </Style>
+        
+    </Application.Resources>
+</Application>

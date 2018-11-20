@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfKeyValueOfstringArrayOfParticipantPYW_P1uBc xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+	<KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+		<Key>Basketball</Key>
+		<Value xmlns:d3p1="http://schemas.datacontract.org/2004/07/Business" />
+	</KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+	<KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+		<Key>Football</Key>
+		<Value xmlns:d3p1="http://schemas.datacontract.org/2004/07/Business" />
+	</KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+	<KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+		<Key>Handball</Key>
+		<Value xmlns:d3p1="http://schemas.datacontract.org/2004/07/Business" />
+	</KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+	<KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+		<Key>TennisDouble</Key>
+		<Value xmlns:d3p1="http://schemas.datacontract.org/2004/07/Business" />
+	</KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+	<KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+		<Key>TennisSimple</Key>
+		<Value xmlns:d3p1="http://schemas.datacontract.org/2004/07/Business" />
+	</KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+	<KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+		<Key>BasketballParticipants</Key>
+		<Value xmlns:d3p1="http://schemas.datacontract.org/2004/07/Business" />
+	</KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+	<KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+		<Key>FootballParticipants</Key>
+		<Value xmlns:d3p1="http://schemas.datacontract.org/2004/07/Business" />
+	</KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+	<KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+		<Key>HandballParticipants</Key>
+		<Value xmlns:d3p1="http://schemas.datacontract.org/2004/07/Business" />
+	</KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+	<KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+		<Key>TennisDoubleParticipants</Key>
+		<Value xmlns:d3p1="http://schemas.datacontract.org/2004/07/Business" />
+	</KeyValueOfstringArrayOfParticipantPYW_P1uBc>
+</ArrayOfKeyValueOfstringArrayOfParticipantPYW_P1uBc>

@@ -1,0 +1,83 @@
+﻿<Window x:Class="Tournaments.TournamentCreation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:business="clr-namespace:Business;assembly=Business"
+        xmlns:local="clr-namespace:Tournaments"
+        xmlns:uc="clr-namespace:Tournaments.UserControls"
+        mc:Ignorable="d"
+        Title="TournamentCreation" Height="720" Width="680"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource Window}">
+
+    <Window.Resources>
+        <!-- Values of the Enum -->
+        <ObjectDataProvider MethodName="GetValues"
+                            ObjectType="{x:Type system:Enum}"
+                            x:Key="mEnum">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="business:TeamType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
+    <Border>
+        <DockPanel LastChildFill="True">
+            <uc:StateBarUserControl x:Name="StateBar" Title="Création d'un tournoi" DockPanel.Dock="Top" />
+
+            <DockPanel Background="#FEFEFEFE">
+                <!-- Banner -->
+                <StackPanel Background="DarkRed" DockPanel.Dock="Top">
+                    <TextBlock TextAlignment="Center" VerticalAlignment="Center"
+                       FontSize="42" Foreground="White"
+                       Padding="10" Text="{Binding ElementName=StateBar, Path=Title}" />
+                </StackPanel>
+
+                <!-- Footer -->
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource CancelButton}" />
+                    <Button Style="{StaticResource ValidateButton}" Click="Validate_Click" />
+                </StackPanel>
+
+                <ScrollViewer>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="230" MaxWidth="230" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="60" MaxHeight="60" />
+                            <RowDefinition MinHeight="60" MaxHeight="60" />
+                            <RowDefinition MinHeight="60" MaxHeight="60" />
+                            <RowDefinition MinHeight="60" MaxHeight="60" />
+                            <RowDefinition MinHeight="60" Height="Auto" />
+                            <RowDefinition MinHeight="60" MaxHeight="60" />
+                            <RowDefinition MinHeight="60" Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Style="{StaticResource CreationLabel}" Content="Nom : " />
+                        <Label Style="{StaticResource CreationLabel}" Content="Lieu : " Grid.Row="1" />
+                        <Label Style="{StaticResource CreationLabel}" Content="Date de début : " Grid.Row="2" />
+                        <Label Style="{StaticResource CreationLabel}" Content="Sport : " Grid.Row="3" />
+                        <Label Style="{StaticResource CreationLabel}" Content="Image : " Grid.Row="4" />
+
+                        <TextBox Style="{StaticResource CreationTextBox}" Name="TournamentName" Grid.Column="1" />
+                        <TextBox Style="{StaticResource CreationTextBox}" Name="TournamentLocation" Grid.Column="1" Grid.Row="1" />
+                        <DatePicker Style="{StaticResource CreationDatePicker}" Name="TournamentDate" Grid.Column="1" Grid.Row="2" />
+                        <ComboBox Style="{StaticResource CreationComboBox}" Name="TournamentSportToSelect" ItemsSource="{Binding Source={StaticResource mEnum}}" Grid.Column="1" Grid.Row="3" IsReadOnly="True" SelectionChanged="SelectionChanged_ComboBox" />
+                        <StackPanel Grid.Column="1" Grid.Row="4">
+                            <Button Name="TournamentImageButton" Style="{StaticResource ImageCreationButton}" />
+                            <Image Style="{StaticResource ItemImage}" Name="TournamentImage" />
+                        </StackPanel>
+                        <Button Style="{StaticResource ParticipantCreationButton}" Content="Ajouter participant" Grid.Column="1" Grid.Row="5" />
+                        <ListView Name="ParticipantsSelection" Grid.Column="1" Grid.Row="6" Margin="10" ItemsSource="{Binding ParticipantsList}" SelectionMode="Multiple" />
+                    </Grid>
+                </ScrollViewer>
+            </DockPanel>
+        </DockPanel>
+    </Border>
+    
+</Window>

@@ -1,0 +1,39 @@
+﻿<Page x:Class="Tournaments.CompetitorCreation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:Tournaments"
+        xmlns:tools="clr-namespace:Tournaments.Tools"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:business="clr-namespace:Business;assembly=Business"
+        mc:Ignorable="d" 
+        d:DesignHeight="600" d:DesignWidth="600"
+        Title="CompetitorCreation">
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="200" MaxWidth="200" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="60" MaxHeight="60" />
+            <RowDefinition MinHeight="60" MaxHeight="60" />
+            <RowDefinition MinHeight="60" MaxHeight="60" />
+            <RowDefinition MinHeight="60" Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Style="{StaticResource CreationLabel}" Content="Nom :" Grid.Row="1" />
+        <Label Style="{StaticResource CreationLabel}" Content="Prénom :" Grid.Row="2" />
+        <Label Style="{StaticResource CreationLabel}" Content="Photo :" Grid.Row="3" />
+
+        <TextBox Style="{StaticResource CreationTextBox}"  Name="LastName" Grid.Column="1" Grid.Row="1" />
+        <TextBox Style="{StaticResource CreationTextBox}"  Name="FirstName" Grid.Column="1" Grid.Row="2" />
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <Button Name="ParticipantImageButton" Style="{StaticResource ImageCreationButton}" />
+            <Image Style="{StaticResource ItemImage}" Name="ParticipantImage" Grid.Column="1" />
+        </StackPanel>
+    </Grid>
+    
+</Page>

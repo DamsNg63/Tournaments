@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSport xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Business">
+	<Sport>
+		<Components />
+		<Image>Resources;Component/Sports/basketball_icon.png</Image>
+		<mType>Basketball</mType>
+	</Sport>
+	<Sport>
+		<Components />
+		<Image>Resources;Component/Sports/football_icon.png</Image>
+		<mType>Football</mType>
+	</Sport>
+	<Sport>
+		<Components />
+		<Image>Resources;Component/Sports/handball_icon.png</Image>
+		<mType>Handball</mType>
+	</Sport>
+	<Sport>
+		<Components />
+		<Image>Resources;Component/Sports/tennis_icon.png</Image>
+		<mType>TennisDouble</mType>
+	</Sport>
+	<Sport>
+		<Components />
+		<Image>Resources;Component/Sports/tennis_icon.png</Image>
+		<mType>TennisSimple</mType>
+	</Sport>
+</ArrayOfSport>
